@@ -26,7 +26,7 @@ You should end up with a folder structure similar to this::
                     urls.py
                     views.py
 
-Let's add it this application to our project. Add ``'polls'`` to the end of ``INSTALLED_APPS`` in
+Let's add this application to our project. Add ``'polls'`` to the end of ``INSTALLED_APPS`` in
 your project's `settings.py` (see the note on :ref:`installed_apps` about ordering ).
 
 Add the following line to ``urlpatterns`` in the project's ``urls.py``::
@@ -40,9 +40,13 @@ Make sure this line is included **before** the line for the django-cms urls::
 django CMS's URL pattern needs to be last, because it "swallows up" anything
 that hasn't already been matched by a previous pattern.
 
-Now run the application's migrations using ``south``::
+Now run the application's migrations.  If using Django <=1.6 using ``south``::
 
     python manage.py migrate polls
+
+If using Django >=1.7 using Djangos built-in migrations::
+
+    python manage.py migrate
 
 At this point you should be able to create polls and choices in the Django
 admin - localhost:8000/admin/ - and fill them in at ``/polls/``.
@@ -69,7 +73,7 @@ done anything django CMS specific yet.
 Creating a plugin
 #################
 
-If you've played around with the CMS for a little, you've probably already
+If you've played around with the CMS for a little while, you've probably already
 encountered CMS Plugins. They are the objects you can place into placeholders on
 your pages through the frontend: "Text", "Image" and so forth.
 
@@ -104,7 +108,7 @@ So our workspace looks like this::
 The Plugin Model
 ================
 
-In your poll application’s ``models.py`` add the following::
+In your poll_plugin application’s ``models.py`` add the following::
 
     from django.db import models
     from cms.models import CMSPlugin
@@ -184,10 +188,15 @@ something like this::
     </form>
 
 Now add ``polls_plugin`` to ``INSTALLED_APPS`` and create a database migration
-to add the plugin table (using South)::
+to add the plugin table.  If using Django <=1.6 (using South)::
 
     python manage.py schemamigration polls_plugin --init
     python manage.py migrate polls_plugin
+
+If using Django >=1.7 (using Djangos built-in migrations)::
+
+    python manage.py makemigrations
+    python manage.py migrate
 
 Finally, start the runserver and visit http://localhost:8000/.
 
