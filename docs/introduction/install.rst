@@ -89,11 +89,10 @@ your brand new django CMS homepage.
 Congratulations, you now have installed a fully functional CMS!
 
 To log in, append ``?edit`` to the URL and hit enter. This will enable the
-toolbar, from where you can log in and manage your website. Switch to ``Draft``
-mode to add and edit content.
+toolbar, from where you can log in and manage your website. 
 
-Try to switch between ``Live`` and ``Draft`` view, between ``Structure`` and
-``Content`` mode, add plugins, move them around and delete them again.
+Try to switch between ``Structure`` and ``Content`` mode, 
+add plugins, move them around and delete them again.
 
 To add a *Text* or or other plugin elements to a placeholder:
 
